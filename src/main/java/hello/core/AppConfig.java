@@ -11,7 +11,9 @@ import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
 
 public class AppConfig {
-
+    /*MemberSerivce , MemberRepository , OrderSerivce , DiscountPolicy 는 다 인터페이스로 리턴은 상속받는 구현체가 와야함
+    * 그래서 return new 구현체로 생성자를 만든다음 각 구현체 기본생성자는 매개변수가 들어가도록 작성해놨음 ( 각 구현 클래스 확인 )
+    * 그 매개변수에 내가 참조(의존)시킬 생성자를 주입해줌.*/
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository()); // 생성자 메서드 주입
     }
