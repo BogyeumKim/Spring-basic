@@ -19,21 +19,28 @@ class StatefulServiceTest {
         StatefulService statefulService2 = ac.getBean(StatefulService.class); // 싱글톤
 
         // ThreadA : A사용자 10000원 주문
-        statefulService1.order("userA",10000);
-        // ThreadA : B사용자 20000원 주문
-        statefulService2.order("userB",20000);
+//        statefulService1.order("userA",10000); // 싱글톤 문제 수정 전
+        int userA = statefulService1.order("userA", 10000);
+        // ThreadA : B사용자 20000원 주문 // 싱글톤 문제 수정 전
+        int userB = statefulService2.order("userB", 20000);
 
         // ThreadA : A사용자가 주문 금액 조회
-        int price = statefulService1.getPrice();
-        System.out.println("price = " + price);
+//        int price = statefulService1.getPrice();
+//        System.out.println("price = " + price);
+        System.out.println("price = " + userA);
 
-        /*출력결과
+        /*싱글톤 문제 수정 전 출력결과
         * name = userA pirce = 10000
         name = userB pirce = 20000
         price = 20000*/
 
+        /*수정 후 결과
+        * name = userA pirce = 10000
+        name = userB pirce = 20000
+        price = 10000*/
+
         // 같은 객체를 참조하니까 후순위의 정보가 저장됨 StatefulService에서 하나의 필드(price)를 사용하기때문에
-        Assertions.assertThat(statefulService1.getPrice()).isEqualTo(20000);
+//        Assertions.assertThat(statefulService1.getPrice()).isEqualTo(20000);
     }
 
     static class TestConfig{
