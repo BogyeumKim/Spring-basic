@@ -36,4 +36,16 @@ public class ConfigurationSingletonTest {
         assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
 
     }
+
+    @Test
+    void configurationDeep() {
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig been = ac.getBean(AppConfig.class);
+
+        System.out.println("been = " + been.getClass());
+        /*출력결과 ( 원래는 hello.core.AppConfig가 끝 )
+        * been = class hello.core.AppConfig$$EnhancerBySpringCGLIB$$2ad68a45
+        * XXX CGLIB가 붙는데 스프링이 라이브러리 사용하여 Bean이 이미 스프링컨테이너에 있는거라면 기존에 있는걸 반환 없으면 Bean에 등록
+        * 여기서 주의점은 AppConfig에 @Configration이 있어야한다. */
+    }
 }
