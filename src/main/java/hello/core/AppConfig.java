@@ -12,7 +12,7 @@ import hello.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration // 스프링에서 설정정보를 담당
+@Configuration // 스프링에서 설정정보를 담당하며 스프링 빈이 싱글톤을 유지하도록 추가 처리해줌.
 public class AppConfig {
     /*MemberSerivce , MemberRepository , OrderSerivce , DiscountPolicy 는 다 인터페이스로 리턴은 상속받는 구현체가 와야함
     * 그래서 return new 구현체로 생성자를 만든다음 각 구현체 기본생성자는 매개변수가 들어가도록 작성해놨음 ( 각 구현 클래스 확인 )
