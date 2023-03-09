@@ -8,7 +8,6 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component // 구현체에다가 적용해야 스프링 빈에 등록됨.
@@ -27,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
     /*APP Config보면 memberRepository에는 MemoryMemberRe~~ , discountPolicy에는 Fixdisco~~ 가 생성되있으므로
     * 아래 생성자 매게변수에 메모리 ,픽스가 들어가 this.memberRepository와 this.discountPolicy에는 각 메모리멤버 , 픽스가 들어가 필드에 생성자가 주입됨.*/
     @Autowired // 스프링 빈에 등록된것을 찾아서 타입이 같은걸 주입해줌. , 생성자 하나면 Autowired 안써도 알아서 주입됨.
-    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
