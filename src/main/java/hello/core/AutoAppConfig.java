@@ -23,8 +23,8 @@ public class AutoAppConfig {
     MemoryMemberRepositroy @Component 붙이면 맨앞 소문자로바꿔서 알아서 스프링 빈에 등록해주는데 똑같이 빈을 등록해봄
     수동이 먼저 등록되며 Oveeriding 됐다며 뜸. 실행은정상 하지만 스프링부트에서는 오류뜸 이미 빈이 등록됐다고
     * */
-    @Bean(name = "memoryMemberRepository")
-    MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
-    }
+//    @Bean(name = "memoryMemberRepository")
+//    MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+//    }
 }
