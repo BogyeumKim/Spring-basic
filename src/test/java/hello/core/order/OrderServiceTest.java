@@ -1,10 +1,8 @@
 package hello.core.order;
 
 import hello.core.AppConfig;
-import hello.core.member.Grade;
-import hello.core.member.Member;
-import hello.core.member.MemberService;
-import hello.core.member.MemberServiceImpl;
+import hello.core.discount.FixDiscountPolicy;
+import hello.core.member.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,5 +27,15 @@ public class OrderServiceTest {
 
         Order order = orderService.createOrder(memberId, "itemA", 10000);
         Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000); // VIP면 1000원할인이니까 검증되는지 확인
+    }
+
+    @Test
+    void filedInjectionTest() {
+        OrderServiceImpl orderService1 = new OrderServiceImpl();
+
+        orderService1.setMemberRepository(new MemoryMemberRepository());
+        orderService1.setDiscountPolicy(new FixDiscountPolicy());
+
+        orderService1.createOrder(1L, "itemAA", 10000);
     }
 }
