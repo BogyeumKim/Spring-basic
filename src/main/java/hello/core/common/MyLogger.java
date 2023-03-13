@@ -20,11 +20,12 @@ public class MyLogger {
 
     public void log(String message) {
         System.out.println("["+uuid +"]"+" ["+requestURL+"] "+message);
+        System.out.println("[" + uuid + "]" + "[" + requestURL + "] " + message);
     }
 
     @PostConstruct // 스코프 지정시 초기화메서드를 사용하자.
     public void init() {
-        String uuid = UUID.randomUUID().toString();
+        uuid = UUID.randomUUID().toString();
         System.out.println("["+uuid +"] request scope been create: "+this);
     }
 
